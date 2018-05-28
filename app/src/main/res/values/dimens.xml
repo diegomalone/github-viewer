@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_tiny">2dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_default">8dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_big">12dp</dimen>
+
+    <dimen name="text_size_default">14sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_highlight">22sp</dimen>
+    <dimen name="text_size_title">28sp</dimen>
+
+    <dimen name="guideline_top">16dp</dimen>
+    <dimen name="guideline_end">16dp</dimen>
+    <dimen name="guideline_bottom">16dp</dimen>
+    <dimen name="guideline_start">16dp</dimen>
+</resources>

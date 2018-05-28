@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Github Viewer</string>
+
+    <string name="error_unexpected">An unexpected error has occurred</string>
+</resources>

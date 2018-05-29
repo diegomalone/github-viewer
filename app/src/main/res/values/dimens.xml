@@ -15,4 +15,7 @@
     <dimen name="guideline_end">16dp</dimen>
     <dimen name="guideline_bottom">16dp</dimen>
     <dimen name="guideline_start">16dp</dimen>
+
+    <dimen name="default_card_corner_radius">0dp</dimen>
+    <dimen name="default_card_elevation">4dp</dimen>
 </resources>

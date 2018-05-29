@@ -6,7 +6,15 @@ import io.reactivex.Observable
 
 class GithubNetworkService(private val api: GithubApi) : GithubDataSource {
 
-    override fun fetchRepositories(page: Int): Observable<List<GithubRepository>> {
-        return api.fetchRepositoryList(page);
+    companion object {
+        const val SORT_TYPE_START = "start"
+        const val REPOSITORY_TYPE_JAVA = "language:Java"
+    }
+
+    override fun fetchJavaRepositories(page: Int): Observable<List<GithubRepository>> {
+        return api.fetchRepositoryList(REPOSITORY_TYPE_JAVA, SORT_TYPE_START, page)
+                .flatMap { t: GithubResponse<List<GithubRepository>> ->
+                    Observable.just(t.items)
+                }
     }
 }

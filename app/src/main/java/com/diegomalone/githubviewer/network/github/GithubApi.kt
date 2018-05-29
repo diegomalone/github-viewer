@@ -2,11 +2,13 @@ package com.diegomalone.githubviewer.network.github
 
 import com.diegomalone.githubviewer.model.GithubRepository
 import io.reactivex.Observable
-import retrofit2.http.POST
+import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GithubApi {
 
-    @POST("search/repositories")
-    fun fetchRepositoryList(@Query("page") page: Int): Observable<List<GithubRepository>>
+    @GET("search/repositories")
+    fun fetchRepositoryList(@Query("q") queryString: String,
+                            @Query("sort") sortType: String,
+                            @Query("page") page: Int): Observable<GithubResponse<List<GithubRepository>>>
 }

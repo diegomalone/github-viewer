@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/repositoryName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_big"
+        android:textColor="@color/colorTextAction"
+        android:textSize="@dimen/text_size_highlight"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/repositoryOwnerImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        tools:text="Repository Name" />
+
+    <TextView
+        android:id="@+id/repositoryDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="@dimen/text_size_default"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintEnd_toStartOf="@id/repositoryOwnerImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/repositoryName"
+        tools:text="This is the description of the respository on Github. " />
+
+    <ImageView
+        android:id="@+id/repositoryOwnerImage"
+        android:layout_width="@dimen/repository_card_user_image_size"
+        android:layout_height="@dimen/repository_card_user_image_size"
+        android:layout_marginStart="@dimen/margin_big"
+        android:contentDescription="@string/repository_card_owner_image_content_description"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/repositoryDetails"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart" />
+
+    <include layout="@layout/include_screen_guidelines" />
+
+</android.support.constraint.ConstraintLayout>

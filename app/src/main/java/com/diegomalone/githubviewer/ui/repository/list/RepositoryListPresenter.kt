@@ -11,14 +11,22 @@ class RepositoryListPresenter(appComponent: AppComponent?,
                               private val githubDataSource: GithubDataSource) : RepositoryListContract.Presenter,
         GithubViewerBasePresenter<RepositoryListContract.View>() {
 
+    companion object {
+        private const val INITIAL_PAGE_VALUE = 1
+    }
+
     init {
         appComponent?.inject(this)
     }
 
-    override fun loadRepositoryList() {
+    private var currentPage = INITIAL_PAGE_VALUE
+
+    override fun loadRepositoryList(firstPage: Boolean) {
         view?.showLoadingIndicator(true)
 
-        githubDataSource.fetchRepositories(1)
+        currentPage = if (firstPage) INITIAL_PAGE_VALUE else (currentPage + 1)
+
+        githubDataSource.fetchJavaRepositories(currentPage)
                 .observeOn(scheduler.ui)
                 .subscribeOn(scheduler.io)
                 .doOnTerminate {
@@ -38,6 +46,10 @@ class RepositoryListPresenter(appComponent: AppComponent?,
     }
 
     private fun processRepositoryList(repositoryList: List<GithubRepository>) {
+        if (currentPage == INITIAL_PAGE_VALUE) {
+            view?.clearRepositoryList()
+        }
+
         view?.showRepositoryList(repositoryList)
     }
 }

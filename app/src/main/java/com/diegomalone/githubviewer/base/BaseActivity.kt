@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.Toast
 import com.diegomalone.githubviewer.R
@@ -67,6 +68,17 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun getViewActivity(): WeakReference<Activity>? {
         return WeakReference(this)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     open fun showUnexpectedError(listener: () -> Unit = DEFAULT_CLICK_LISTENER) {

@@ -21,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.repository.detail.RepositoryDetailsActivity"
+            android:label="@string/repository_details_title" />
     </application>
 
 </manifest>

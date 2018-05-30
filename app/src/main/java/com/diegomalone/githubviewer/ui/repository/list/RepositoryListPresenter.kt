@@ -72,7 +72,7 @@ class RepositoryListPresenter(appComponent: AppComponent?,
     }
 
     override fun selectRepository(repository: GithubRepository) {
-        // TODO
+        flowController?.redirectToRepositoryDetailsActivity(repository)
     }
 
     private fun processRepositoryList(repositoryList: List<GithubRepository>) {

@@ -5,6 +5,7 @@ import com.diegomalone.githubviewer.di.module.AppModule
 import com.diegomalone.githubviewer.di.module.DataModule
 import com.diegomalone.githubviewer.di.module.PresenterModule
 import com.diegomalone.githubviewer.network.GithubDataSource
+import com.diegomalone.githubviewer.ui.repository.detail.RepositoryDetailsPresenter
 import com.diegomalone.githubviewer.ui.repository.list.RepositoryListPresenter
 import dagger.Component
 import javax.inject.Singleton
@@ -18,4 +19,5 @@ interface AppComponent {
     operator fun plus(presenterModule: PresenterModule): ConfigPersistentComponent
 
     fun inject(repositoryListPresenter: RepositoryListPresenter)
+    fun inject(repositoryDetailsPresenter: RepositoryDetailsPresenter)
 }

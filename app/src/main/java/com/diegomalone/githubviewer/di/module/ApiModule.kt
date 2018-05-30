@@ -1,9 +1,13 @@
 package com.diegomalone.githubviewer.di.module
 
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
 import com.diegomalone.githubviewer.BuildConfig
+import com.diegomalone.githubviewer.exception.NoNetworkException
 import com.diegomalone.githubviewer.network.github.GithubApi
 import com.diegomalone.githubviewer.util.DateUtils.API_DATE_FORMAT
+import com.diegomalone.githubviewer.util.extension.isConnected
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -31,10 +35,21 @@ open class ApiModule(private val apiUrl: String) {
     @Provides
     @Singleton
     open fun providesOkHttpClient(app: WeakReference<Application>): OkHttpClient {
+        val connectivityManager = app.get()?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
         return getOkHttpBuilder()
                 .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
+                .addInterceptor { chain ->
+                    val requestBuilder = chain.request().newBuilder()
+
+                    if (!connectivityManager.isConnected) {
+                        throw NoNetworkException()
+                    }
+
+                    chain.proceed(requestBuilder.build())
+                }
                 .build()
     }
 

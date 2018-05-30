@@ -2,4 +2,7 @@
     <string name="app_name">Github Viewer</string>
 
     <string name="error_unexpected">An unexpected error has occurred</string>
+    <string name="error_no_network_connection">You don\'t have an active connection</string>
+    <string name="error_icon_content_description">Error icon</string>
+    <string name="error_icon_tap_to_try_again">Tap to try again</string>
 </resources>

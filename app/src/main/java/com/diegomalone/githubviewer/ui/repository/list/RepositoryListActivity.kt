@@ -75,8 +75,20 @@ class RepositoryListActivity : BaseActivity(), RepositoryListContract.View {
         swipeRefreshLayout.isRefreshing = loadingVisible
     }
 
-    override fun showUnexpectedError() {
-        constraintLayout.snack(R.string.error_unexpected)
+    override fun showUnexpectedError(listener: () -> Unit) {
+        if (presenter.isListLoaded()) {
+            mainContainer.snack(R.string.error_unexpected)
+        } else {
+            super.showUnexpectedError(listener)
+        }
+    }
+
+    override fun showNoNetworkError(listener: () -> Unit) {
+        if (presenter.isListLoaded()) {
+            mainContainer.snack(R.string.error_no_network_connection)
+        } else {
+            super.showNoNetworkError(listener)
+        }
     }
 
     override fun clearRepositoryList() {

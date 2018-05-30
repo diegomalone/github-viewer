@@ -11,4 +11,6 @@
 
     <include layout="@layout/content_repository_list" />
 
+    <include layout="@layout/include_error_view" />
+
 </android.support.design.widget.CoordinatorLayout>

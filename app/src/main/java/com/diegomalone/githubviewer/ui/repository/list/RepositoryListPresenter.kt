@@ -3,6 +3,7 @@ package com.diegomalone.githubviewer.ui.repository.list
 import android.os.Bundle
 import com.diegomalone.githubviewer.base.GithubViewerBasePresenter
 import com.diegomalone.githubviewer.di.AppComponent
+import com.diegomalone.githubviewer.exception.NoNetworkException
 import com.diegomalone.githubviewer.model.GithubRepository
 import com.diegomalone.githubviewer.network.GithubDataSource
 import com.diegomalone.githubviewer.util.extension.addToCompositeDisposable
@@ -56,8 +57,16 @@ class RepositoryListPresenter(appComponent: AppComponent?,
                 .subscribe({ repositoryList ->
                     processRepositoryList(repositoryList)
                 }, { e ->
-                    view?.showUnexpectedError()
                     Timber.e(e)
+                    if (e is NoNetworkException) {
+                        view?.showNoNetworkError {
+                            loadRepositoryList(true)
+                        }
+                    } else {
+                        view?.showUnexpectedError {
+                            loadRepositoryList(true)
+                        }
+                    }
                 })
                 .addToCompositeDisposable(compositeDisposable)
     }
@@ -73,6 +82,7 @@ class RepositoryListPresenter(appComponent: AppComponent?,
         }
 
         this.repositoryList.addAll(repositoryList)
+        view?.hideErrorView()
         view?.showRepositoryList(repositoryList)
     }
 }

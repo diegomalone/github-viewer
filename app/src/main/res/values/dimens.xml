@@ -18,4 +18,6 @@
 
     <dimen name="default_card_corner_radius">0dp</dimen>
     <dimen name="default_card_elevation">4dp</dimen>
+
+    <dimen name="error_view_icon_size">72dp</dimen>
 </resources>

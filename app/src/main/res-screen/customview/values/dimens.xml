@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="repository_card_user_image_size">48dp</dimen>
+    <dimen name="repository_card_icon_size">20dp</dimen>
+    <dimen name="repository_card_right_panel_width">96dp</dimen>
 </resources>

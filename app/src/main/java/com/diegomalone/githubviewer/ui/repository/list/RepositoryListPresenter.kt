@@ -1,5 +1,6 @@
 package com.diegomalone.githubviewer.ui.repository.list
 
+import android.os.Bundle
 import com.diegomalone.githubviewer.base.GithubViewerBasePresenter
 import com.diegomalone.githubviewer.di.AppComponent
 import com.diegomalone.githubviewer.model.GithubRepository
@@ -13,13 +14,33 @@ class RepositoryListPresenter(appComponent: AppComponent?,
 
     companion object {
         private const val INITIAL_PAGE_VALUE = 1
+
+        private const val REPOSITORY_LIST_KEY = "repositoryListKey"
+        private const val CURRENT_PAGE_KEY = "currentPageKey"
     }
 
     init {
         appComponent?.inject(this)
     }
 
+    private val repositoryList = ArrayList<GithubRepository>()
     private var currentPage = INITIAL_PAGE_VALUE
+
+    override fun saveInstanceState(outState: Bundle?) {
+        outState?.putParcelableArrayList(REPOSITORY_LIST_KEY, repositoryList)
+        outState?.putInt(CURRENT_PAGE_KEY, currentPage)
+    }
+
+    override fun restoreInstanceState(savedInstanceState: Bundle?) {
+        savedInstanceState?.let {
+            currentPage = it.getInt(CURRENT_PAGE_KEY, INITIAL_PAGE_VALUE)
+            processRepositoryList(it.getParcelableArrayList(REPOSITORY_LIST_KEY))
+        }
+    }
+
+    override fun isListLoaded(): Boolean {
+        return !repositoryList.isEmpty()
+    }
 
     override fun loadRepositoryList(firstPage: Boolean) {
         view?.showLoadingIndicator(true)
@@ -47,9 +68,11 @@ class RepositoryListPresenter(appComponent: AppComponent?,
 
     private fun processRepositoryList(repositoryList: List<GithubRepository>) {
         if (currentPage == INITIAL_PAGE_VALUE) {
+            this.repositoryList.clear()
             view?.clearRepositoryList()
         }
 
+        this.repositoryList.addAll(repositoryList)
         view?.showRepositoryList(repositoryList)
     }
 }

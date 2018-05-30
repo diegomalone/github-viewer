@@ -10,12 +10,11 @@
         android:id="@+id/repositoryName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_big"
+        android:layout_marginEnd="@dimen/margin_default"
         android:textColor="@color/colorTextAction"
         android:textSize="@dimen/text_size_highlight"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/repositoryOwnerImage"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightPanel"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
         tools:text="Repository Name" />
@@ -24,29 +23,98 @@
         android:id="@+id/repositoryDetails"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_default"
         android:ellipsize="end"
         android:maxLines="4"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/text_size_default"
-        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-        app:layout_constraintEnd_toStartOf="@id/repositoryOwnerImage"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightPanel"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@id/repositoryName"
         tools:text="This is the description of the respository on Github. " />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineRightPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/repository_card_right_panel_width" />
+
     <ImageView
         android:id="@+id/repositoryOwnerImage"
         android:layout_width="@dimen/repository_card_user_image_size"
         android:layout_height="@dimen/repository_card_user_image_size"
-        android:layout_marginStart="@dimen/margin_big"
         android:contentDescription="@string/repository_card_owner_image_content_description"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/repositoryDetails"
+        app:layout_constraintStart_toStartOf="@id/guidelineRightPanel"
         app:layout_constraintTop_toTopOf="@id/guidelineTop" />
+
+    <TextView
+        android:id="@+id/userLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="3"
+        android:textColor="@color/colorTextAction"
+        android:textSize="@dimen/text_size_default"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineRightPanel"
+        app:layout_constraintTop_toBottomOf="@id/repositoryOwnerImage" />
+
+    <ImageView
+        android:id="@+id/forkIcon"
+        android:layout_width="@dimen/repository_card_icon_size"
+        android:layout_height="@dimen/repository_card_icon_size"
+        android:layout_marginBottom="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_default"
+        android:contentDescription="@string/repository_card_fork_icon_content_description"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/repositoryDetails"
+        app:srcCompat="@drawable/ic_fork" />
+
+    <TextView
+        android:id="@+id/forkCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_size_default"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/forkIcon"
+        app:layout_constraintStart_toEndOf="@id/forkIcon"
+        app:layout_constraintTop_toTopOf="@id/forkIcon"
+        tools:text="560" />
+
+    <ImageView
+        android:id="@+id/starIcon"
+        android:layout_width="@dimen/repository_card_icon_size"
+        android:layout_height="@dimen/repository_card_icon_size"
+        android:layout_marginStart="@dimen/margin_big"
+        android:contentDescription="@string/repository_card_star_icon_content_description"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@id/forkIcon"
+        app:layout_constraintStart_toEndOf="@id/forkCount"
+        app:layout_constraintTop_toTopOf="@id/forkIcon"
+        app:srcCompat="@drawable/ic_star" />
+
+    <TextView
+        android:id="@+id/starCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_size_default"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/forkIcon"
+        app:layout_constraintStart_toEndOf="@id/starIcon"
+        app:layout_constraintTop_toTopOf="@id/forkIcon"
+        tools:text="2309" />
 
     <View
         android:id="@+id/divider"

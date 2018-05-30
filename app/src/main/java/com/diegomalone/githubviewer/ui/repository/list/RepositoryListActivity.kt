@@ -35,7 +35,11 @@ class RepositoryListActivity : BaseActivity(), RepositoryListContract.View {
 
         configureUI()
 
-        presenter.loadRepositoryList(true)
+        presenter.restoreInstanceState(savedInstanceState)
+
+        if (!presenter.isListLoaded()) {
+            presenter.loadRepositoryList(true)
+        }
     }
 
     override fun onDestroy() {
@@ -45,6 +49,11 @@ class RepositoryListActivity : BaseActivity(), RepositoryListContract.View {
         if (!configPersistDelegate.instanceSaved) {
             presenter.destroy()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        presenter.saveInstanceState(outState)
     }
 
     private fun configureUI() {

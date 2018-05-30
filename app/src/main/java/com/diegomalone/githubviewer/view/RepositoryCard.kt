@@ -31,12 +31,15 @@ class RepositoryCard : CardView {
     private fun updateRepository() {
         repositoryName.text = repository?.name
         repositoryDetails.text = repository?.description
+        userLogin.text = repository?.owner?.login
+
+        forkCount.text = repository?.totalForks?.toString()
+        starCount.text = repository?.totalStars?.toString()
 
         GlideApp.with(context)
                 .load(repository?.owner?.avatarUrl)
                 .apply(RequestOptions.circleCropTransform())
-                // TODO Place holder for users without profile image
-                // .error(R.drawable.ic_no_photo)
+                .error(R.drawable.ic_user_no_photo)
                 .into(repositoryOwnerImage)
     }
 }

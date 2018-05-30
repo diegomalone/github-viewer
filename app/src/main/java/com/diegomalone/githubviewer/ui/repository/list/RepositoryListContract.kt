@@ -13,6 +13,8 @@ interface RepositoryListContract {
     }
 
     interface Presenter : BasePresenter<View> {
+        fun isListLoaded(): Boolean
+
         fun loadRepositoryList(firstPage: Boolean = false)
 
         fun selectRepository(repository: GithubRepository)

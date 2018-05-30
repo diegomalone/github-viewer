@@ -4,7 +4,7 @@ import com.diegomalone.githubviewer.util.SchedulerContract
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-open class GithubViewerBasePresenter<V : BaseView> : BasePresenter<V> {
+abstract class GithubViewerBasePresenter<V : BaseView> : BasePresenter<V> {
 
     protected val compositeDisposable = CompositeDisposable()
 

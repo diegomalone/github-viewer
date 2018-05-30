@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/repositoryName"
@@ -48,6 +48,7 @@
         android:layout_height="@dimen/repository_card_user_image_size"
         android:contentDescription="@string/repository_card_owner_image_content_description"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        tools:src="@drawable/ic_user_no_photo"
         app:layout_constraintStart_toStartOf="@id/guidelineRightPanel"
         app:layout_constraintTop_toTopOf="@id/guidelineTop" />
 
@@ -58,6 +59,7 @@
         android:layout_marginTop="@dimen/margin_small"
         android:ellipsize="end"
         android:gravity="center"
+        tools:text="username"
         android:maxLines="3"
         android:textColor="@color/colorTextAction"
         android:textSize="@dimen/text_size_default"

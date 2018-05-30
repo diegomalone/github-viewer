@@ -3,23 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- TODO Create layout -->
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/pullRequestTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/guideline_bottom"
         android:layout_marginEnd="@dimen/margin_default"
         android:textColor="@color/colorTextAction"
         android:textSize="@dimen/text_size_medium"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/divider"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
         tools:text="Pull Request Name" />
+
+    <TextView
+        android:id="@+id/pullRequestBody"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="@dimen/text_size_default"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/pullRequestTitle"
+        tools:text="This is the description of the respository on Github. " />
+
+    <ImageView
+        android:id="@+id/pullRequestUserImage"
+        android:layout_width="@dimen/pull_request_card_user_image_size"
+        android:layout_height="@dimen/pull_request_card_user_image_size"
+        android:layout_marginBottom="@dimen/guideline_bottom"
+        android:layout_marginTop="@dimen/margin_default"
+        android:contentDescription="@string/pull_request_card_user_image_content_description"
+        app:layout_constraintBottom_toTopOf="@id/divider"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/pullRequestBody"
+        tools:src="@drawable/ic_user_no_photo" />
+
+    <TextView
+        android:id="@+id/userLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/colorTextAction"
+        android:textSize="@dimen/text_size_default"
+        app:layout_constraintBottom_toBottomOf="@id/pullRequestUserImage"
+        app:layout_constraintEnd_toStartOf="@id/pullRequestDate"
+        app:layout_constraintStart_toEndOf="@id/pullRequestUserImage"
+        app:layout_constraintTop_toTopOf="@id/pullRequestUserImage"
+        tools:text="username" />
+
+    <TextView
+        android:id="@+id/pullRequestDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_size_default"
+        app:layout_constraintBottom_toBottomOf="@id/pullRequestUserImage"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toEndOf="@id/userLogin"
+        app:layout_constraintTop_toTopOf="@id/pullRequestUserImage"
+        tools:text="05/13/2018" />
 
     <View
         android:id="@+id/divider"

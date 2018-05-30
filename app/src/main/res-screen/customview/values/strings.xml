@@ -3,4 +3,6 @@
     <string name="repository_card_star_icon_content_description">Star icon</string>
     <string name="repository_card_fork_icon_content_description">Fork icon</string>
     <string name="repository_card_owner_image_content_description">Repository owner profile image</string>
+
+    <string name="pull_request_card_user_image_content_description">Pull request user profile image</string>
 </resources>

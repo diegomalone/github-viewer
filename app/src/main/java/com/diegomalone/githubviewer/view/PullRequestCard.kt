@@ -4,8 +4,11 @@ import android.content.Context
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import com.bumptech.glide.request.RequestOptions
 import com.diegomalone.githubviewer.R
+import com.diegomalone.githubviewer.base.GlideApp
 import com.diegomalone.githubviewer.model.GithubPullRequest
+import com.diegomalone.githubviewer.util.DateUtils
 import kotlinx.android.synthetic.main.view_pull_request_card.view.*
 
 class PullRequestCard : CardView {
@@ -27,8 +30,17 @@ class PullRequestCard : CardView {
     }
 
     private fun updatePullRequest() {
-        // TODO Create layout
-
         pullRequestTitle.text = pullRequest?.title
+        pullRequestBody.text = pullRequest?.body
+
+        userLogin.text = pullRequest?.user?.login
+
+        pullRequestDate.text = DateUtils.getUserDate(DateUtils.getDateFromString(pullRequest?.createdAt))
+
+        GlideApp.with(context)
+                .load(pullRequest?.user?.avatarUrl)
+                .apply(RequestOptions.circleCropTransform())
+                .error(R.drawable.ic_user_no_photo)
+                .into(pullRequestUserImage)
     }
 }

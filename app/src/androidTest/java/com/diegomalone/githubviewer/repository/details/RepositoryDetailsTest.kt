@@ -44,7 +44,7 @@ class RepositoryDetailsTest : BaseInterfaceTest() {
     fun test_clickPullRequest() {
         mockServer.enqueue(HttpURLConnection.HTTP_OK, "pull_request_list.json")
 
-        robot.pullRequestClick(0)
+        robot.pullRequestClick(1)
                 .redirectedToBrowser("https://github.com/iluwatar/java-design-patterns/pull/753")
     }
 
@@ -53,6 +53,13 @@ class RepositoryDetailsTest : BaseInterfaceTest() {
         mockServer.enqueue(HttpURLConnection.HTTP_OK, "pull_request_list.json")
 
         robot.checkPullRequestShown("Acyclic Visitor pattern #734")
+    }
+
+    @Test
+    fun test_pullRequestCount() {
+        mockServer.enqueue(HttpURLConnection.HTTP_OK, "pull_request_list.json")
+
+        robot.checkPullRequestCount(5)
     }
 
     @Test

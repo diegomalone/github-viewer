@@ -1,6 +1,7 @@
 package com.diegomalone.githubviewer.repository.details
 
 import android.os.SystemClock
+import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
@@ -23,6 +24,16 @@ class RepositoryDetailsRobot : BaseRobot() {
     fun checkPullRequestShown(repositoryName: String) = apply {
         SystemClock.sleep(RECYCLER_VIEW_CHECK_DELAY)
         Espresso.onView(CoreMatchers.allOf<View>(ViewMatchers.withId(R.id.pullRequestTitle), ViewMatchers.withText(repositoryName)))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+    }
+
+    fun checkPullRequestCount(count: Int) = apply {
+        SystemClock.sleep(RECYCLER_VIEW_CHECK_DELAY)
+
+        val context = InstrumentationRegistry.getTargetContext()
+        val pullRequestCount = context.resources.getQuantityString(R.plurals.repository_details_pull_request_count_pattern, count, count)
+
+        Espresso.onView(CoreMatchers.allOf<View>(ViewMatchers.withId(R.id.listTitle), ViewMatchers.withText(pullRequestCount)))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 

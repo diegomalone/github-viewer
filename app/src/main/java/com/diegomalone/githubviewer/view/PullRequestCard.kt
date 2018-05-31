@@ -9,6 +9,7 @@ import com.diegomalone.githubviewer.R
 import com.diegomalone.githubviewer.base.GlideApp
 import com.diegomalone.githubviewer.model.GithubPullRequest
 import com.diegomalone.githubviewer.util.DateUtils
+import com.diegomalone.githubviewer.util.extension.visible
 import kotlinx.android.synthetic.main.view_pull_request_card.view.*
 
 class PullRequestCard : CardView {
@@ -27,6 +28,10 @@ class PullRequestCard : CardView {
 
         radius = context.resources.getDimension(R.dimen.default_card_corner_radius)
         cardElevation = context.resources.getDimension(R.dimen.default_card_elevation)
+    }
+
+    fun setDividerVisibility(visible: Boolean) {
+        divider.visible(visible)
     }
 
     private fun updatePullRequest() {

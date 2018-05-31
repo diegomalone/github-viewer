@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="repository_details_title">Repository Details</string>
+
+    <plurals name="repository_details_pull_request_count_pattern">
+        <item quantity="one">%1$d open pull request</item>
+        <item quantity="zero">There is no open pull requests</item>
+        <item quantity="other">%1$d open pull requests</item>
+    </plurals>
 </resources>

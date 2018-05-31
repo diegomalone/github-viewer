@@ -73,6 +73,11 @@ class RepositoryDetailsActivity : BaseActivity(), RepositoryDetailsContract.View
     }
 
     override fun showPullRequestList(pullRequestList: List<GithubPullRequest>) {
+        val listTitle = resources.getQuantityString(
+                R.plurals.repository_details_pull_request_count_pattern,
+                pullRequestList.size, pullRequestList.size)
+
+        adapter?.setListTitle(listTitle)
         adapter?.setPullRequestList(pullRequestList)
         adapter?.notifyDataSetChanged()
     }

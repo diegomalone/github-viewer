@@ -7,7 +7,7 @@ ext {
 
     supportLibraryVersion = '27.1.1'
     constraintLayoutVersion = '1.1.0'
-    crashlyticsVersion = '2.9.2'
+    crashlyticsVersion = '2.9.3'
 
     daggerVersion = '2.13'
     retrofitVersion = '2.3.0'
@@ -16,7 +16,20 @@ ext {
     rxJavaVersion = '2.1.6'
     rxAndroidVersion = '2.0.1'
     timberVersion = '4.6.0'
-    glideVersion = '4.5.0'
+    glideVersion = '4.6.1'
+
+    // Test
+    junitVersion = '4.12'
+    robolectricVersion = '3.4.2'
+    mockitoVersion = '2.12.0'
+    mockitoKotlinVersion = '1.5.0'
+    daggerMockVersion = '0.8.2'
+
+    // Espresso Test
+    expressoVersion = '3.0.1'
+    okHttpMockVersion = '3.9.0'
+    supportTestRulesVersion = '0.5'
+    supportTestRunnerVersion = '1.0.1'
 }
 
 buildscript {
@@ -26,10 +39,12 @@ buildscript {
         jcenter()
 
         maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath 'io.fabric.tools:gradle:1.+'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -42,6 +57,7 @@ allprojects {
         jcenter()
 
         maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://jitpack.io' }
     }
 }
 

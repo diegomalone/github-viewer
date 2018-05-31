@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'io.fabric'
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
 
@@ -57,7 +59,7 @@ androidExtensions {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     // Support Library
     implementation "com.android.support:support-v4:$supportLibraryVersion"
@@ -86,4 +88,39 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion@aar") {
+        transitive = true
+    }
+
+    // Test
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "com.github.fabioCollini.daggermock:daggermock:$daggerMockVersion"
+    testImplementation "com.github.fabioCollini.daggermock:daggermock-kotlin:$daggerMockVersion"
+
+    // Interface Test
+    androidTestImplementation "com.android.support:support-annotations:$supportLibraryVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$expressoVersion"
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$expressoVersion") {
+        exclude module: 'javax.annotation-api'
+        exclude module: 'support-annotations'
+    }
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$expressoVersion") {
+        exclude module: 'espresso-core'
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-annotations'
+        exclude module: 'design'
+    }
+
+    androidTestImplementation("com.android.support.test:rules:$supportTestRulesVersion") {
+        exclude module: 'support-annotations'
+    }
+    androidTestImplementation "com.android.support.test:runner:$supportTestRunnerVersion"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okHttpMockVersion"
 }

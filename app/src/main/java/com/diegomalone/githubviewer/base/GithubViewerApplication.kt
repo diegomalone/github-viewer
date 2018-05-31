@@ -1,11 +1,14 @@
 package com.diegomalone.githubviewer.base
 
 import android.app.Application
+import com.crashlytics.android.Crashlytics
+import com.crashlytics.android.answers.Answers
 import com.diegomalone.githubviewer.BuildConfig
 import com.diegomalone.githubviewer.di.AppComponent
 import com.diegomalone.githubviewer.di.DaggerAppComponent
 import com.diegomalone.githubviewer.di.module.ApiModule
 import com.diegomalone.githubviewer.di.module.AppModule
+import io.fabric.sdk.android.Fabric
 import io.reactivex.plugins.RxJavaPlugins
 import timber.log.Timber
 
@@ -15,6 +18,8 @@ class GithubViewerApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        Fabric.with(this, Answers(), Crashlytics())
 
         buildComponent()
         configureExceptionLogging()

@@ -25,6 +25,10 @@
         <activity
             android:name=".ui.repository.detail.RepositoryDetailsActivity"
             android:label="@string/repository_details_title" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="7f2811cf7360ec81419d1e666b8a61ecd053f3cd" />
     </application>
 
 </manifest>

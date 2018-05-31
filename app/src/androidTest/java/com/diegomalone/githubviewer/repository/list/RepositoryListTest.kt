@@ -1,9 +1,11 @@
 package com.diegomalone.githubviewer.repository.list
 
 import android.content.Intent
+import android.os.SystemClock
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.diegomalone.githubviewer.base.BaseInterfaceTest
+import com.diegomalone.githubviewer.base.BaseRobot.Companion.RECYCLER_VIEW_CHECK_DELAY
 import com.diegomalone.githubviewer.ui.repository.detail.RepositoryDetailsActivity
 import com.diegomalone.githubviewer.ui.repository.list.RepositoryListActivity
 import org.junit.After
@@ -47,5 +49,13 @@ class RepositoryListTest : BaseInterfaceTest() {
         mockServer.enqueue(HttpURLConnection.HTTP_OK, "repository_list_first_page.json")
 
         robot.checkRepositoryShown("java-design-patterns")
+    }
+
+    @Test
+    fun test_serverError() {
+        mockServer.enqueue(HttpURLConnection.HTTP_INTERNAL_ERROR)
+
+        SystemClock.sleep(RECYCLER_VIEW_CHECK_DELAY)
+        robot.failedDueUnknownError()
     }
 }

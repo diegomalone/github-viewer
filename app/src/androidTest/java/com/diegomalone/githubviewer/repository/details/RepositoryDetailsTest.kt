@@ -1,9 +1,11 @@
 package com.diegomalone.githubviewer.repository.details
 
 import android.content.Intent
+import android.os.SystemClock
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.diegomalone.githubviewer.base.BaseInterfaceTest
+import com.diegomalone.githubviewer.base.BaseRobot
 import com.diegomalone.githubviewer.flow.FlowController.Companion.REPOSITORY_EXTRA
 import com.diegomalone.githubviewer.model.GithubRepositoryFactory
 import com.diegomalone.githubviewer.ui.repository.detail.RepositoryDetailsActivity
@@ -51,5 +53,13 @@ class RepositoryDetailsTest : BaseInterfaceTest() {
         mockServer.enqueue(HttpURLConnection.HTTP_OK, "pull_request_list.json")
 
         robot.checkPullRequestShown("Acyclic Visitor pattern #734")
+    }
+
+    @Test
+    fun test_serverError() {
+        mockServer.enqueue(HttpURLConnection.HTTP_INTERNAL_ERROR)
+
+        SystemClock.sleep(BaseRobot.RECYCLER_VIEW_CHECK_DELAY)
+        robot.failedDueUnknownError()
     }
 }

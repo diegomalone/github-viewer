@@ -41,6 +41,16 @@ android {
     }
 
     sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+
+        test {
+            java.srcDir sharedTestDir
+        }
+
+        androidTest {
+            java.srcDir sharedTestDir
+        }
+
         main {
             file('src/main/res-screen')
                     .listFiles()

@@ -21,7 +21,6 @@ import org.mockito.Mockito.mock
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
-
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, application = GithubViewerApplication::class, sdk = [26])
 class RepositoryDetailsPresenterTest : BaseTest() {
